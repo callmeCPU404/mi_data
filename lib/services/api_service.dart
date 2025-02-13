@@ -5,7 +5,7 @@ import 'package:mi_data/models/user_models.dart';
 
 
 class ApiService {
-  final String apiUrl = 'https://api.example.com/users';
+  final String apiUrl = 'https://api.github.com/repositories';
 
   Future<List<User>> fetchUsers() async {
     final response = await http.get(Uri.parse(apiUrl));

@@ -1,7 +1,6 @@
 // providers/user_provider.dart
 import 'package:flutter/material.dart';
 import 'package:mi_data/models/user_models.dart';
-
 import '../services/api_service.dart';
 
 class UserProvider with ChangeNotifier {

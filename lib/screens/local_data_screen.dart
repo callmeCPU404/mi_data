@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:mi_data/provider/user_provider.dart';
 import 'package:provider/provider.dart';
-
 import '../widgets/user_card.dart';
 
 class LocalDataScreen extends StatelessWidget {

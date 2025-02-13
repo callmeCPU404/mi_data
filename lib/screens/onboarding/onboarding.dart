@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mi_data/screens/fetch_data/fetch_data.dart';
-
+import 'package:mi_data/screens/homescreen/homescreen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -116,7 +115,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => FetchData(),
+                      builder: (context) => HomeScreen(),
                     ),
                   );
                 } else {
