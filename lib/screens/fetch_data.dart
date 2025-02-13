@@ -10,7 +10,9 @@ class FetchDataScreen extends StatelessWidget {
     final userProvider = Provider.of<UserProvider>(context);
 
     return Scaffold(
-      appBar: AppBar(title: Text("Fetch Data")),
+      appBar: AppBar(
+        backgroundColor: Colors.greenAccent,
+        title: Text("Fetch Data", style: TextStyle(color: Colors.white),)),
       body: userProvider.isLoading
           ? SkeletonLoader()
           : userProvider.users.isEmpty

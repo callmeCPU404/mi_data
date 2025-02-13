@@ -26,10 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
         Color customColor = const Color(0xFF50B97B);
     return Scaffold(
       backgroundColor: Colors.green[50],
-      appBar: AppBar(
-        
-    title: Text('MI Data Repositories', style: TextStyle(color: Colors.white),),
-      ),
+      
       body: _screens[_currentIndex],
       bottomNavigationBar: BottomNavBar(
         currentIndex: _currentIndex,

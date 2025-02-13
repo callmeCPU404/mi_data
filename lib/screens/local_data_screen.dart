@@ -23,7 +23,7 @@ class LocalDataScreen extends StatelessWidget {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: Text("User removed from local storage!")),
                     );
-                  }, onSave: () {  },
+                  },
                 );
               },
             ),
