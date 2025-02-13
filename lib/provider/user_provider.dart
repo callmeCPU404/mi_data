@@ -1,7 +1,8 @@
-// providers/user_provider.dart
 import 'package:flutter/material.dart';
 import 'package:mi_data/models/user_models.dart';
+import 'package:mi_data/services/db_helper.dart';
 import '../services/api_service.dart';
+
 
 class UserProvider with ChangeNotifier {
   List<User> _users = [];
@@ -13,28 +14,41 @@ class UserProvider with ChangeNotifier {
   bool get isLoading => _isLoading;
 
   final ApiService _apiService = ApiService();
+  final DatabaseHelper _dbHelper = DatabaseHelper();
 
+  /// Fetch users from API
   Future<void> fetchUsers() async {
     _isLoading = true;
     notifyListeners();
+    print("Fetching users from API...");
 
     try {
       _users = await _apiService.fetchUsers();
+      print("Fetched ${_users.length} users.");
     } catch (e) {
-      print(e);
+      print("Error fetching users: $e");
     } finally {
       _isLoading = false;
       notifyListeners();
     }
   }
 
-  void saveLocalUser(User user) {
-    _localUsers.add(user);
+  /// Load saved users from SQLite
+  Future<void> loadLocalUsers() async {
+    _localUsers = await _dbHelper.getUsers();
     notifyListeners();
+    print("Loaded ${_localUsers.length} users from local database.");
   }
 
-  void deleteLocalUser(User user) {
-    _localUsers.remove(user);
-    notifyListeners();
+  /// Save user to local database
+  Future<void> saveLocalUser(User user) async {
+    await _dbHelper.insertUser(user);
+    await loadLocalUsers();
+  }
+
+  /// Delete user from local database
+  Future<void> deleteLocalUser(User user) async {
+    await _dbHelper.deleteUser(user.login);
+    await loadLocalUsers();
   }
 }

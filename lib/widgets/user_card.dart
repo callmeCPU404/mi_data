@@ -7,7 +7,7 @@ class UserCard extends StatelessWidget {
   final User user;
   final VoidCallback? onDelete;
 
-  UserCard({required this.user, this.onDelete});
+  UserCard({required this.user, this.onDelete, required Null Function() onSave});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class UserCard extends StatelessWidget {
           backgroundImage: NetworkImage(user.avatarUrl),
         ),
         title: Text(user.fullName),
-        subtitle: Text(user.description),
+        subtitle: Text(user.description ?? ''),
         trailing: IconButton(
           icon: Icon(Icons.delete),
           onPressed: onDelete,

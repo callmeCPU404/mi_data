@@ -1,4 +1,3 @@
-// screens/local_data_screen.dart
 import 'package:flutter/material.dart';
 import 'package:mi_data/provider/user_provider.dart';
 import 'package:provider/provider.dart';
@@ -10,18 +9,24 @@ class LocalDataScreen extends StatelessWidget {
     final userProvider = Provider.of<UserProvider>(context);
 
     return Scaffold(
-      body: ListView.builder(
-        itemCount: userProvider.localUsers.length,
-        itemBuilder: (context, index) {
-          final user = userProvider.localUsers[index];
-          return UserCard(
-            user: user,
-            onDelete: () {
-              userProvider.deleteLocalUser(user);
-            },
-          );
-        },
-      ),
+      appBar: AppBar(title: Text("Saved Users (Offline)")),
+      body: userProvider.localUsers.isEmpty
+          ? Center(child: Text("No saved users found."))
+          : ListView.builder(
+              itemCount: userProvider.localUsers.length,
+              itemBuilder: (context, index) {
+                final user = userProvider.localUsers[index];
+                return UserCard(
+                  user: user,
+                  onDelete: () {
+                    userProvider.deleteLocalUser(user);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text("User removed from local storage!")),
+                    );
+                  }, onSave: () {  },
+                );
+              },
+            ),
     );
   }
 }
