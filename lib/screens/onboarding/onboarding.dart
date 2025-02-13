@@ -18,9 +18,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   int _currentPage = 0;
 
   final List<String> images = [
-    'assets/welcome_farmers.png',
-    'assets/chickenpre.png',
-    'assets/sync.png',
+    'assets/Discover.png',
+    'assets/offline.png',
+    'assets/manage.png',
   ];
 
   @override
